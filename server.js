@@ -6,6 +6,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to the SQLite database
+const dbPath = process.env.DB_PATH || './sqliteapi.db';
 const db = new sqlite3.Database('./sqliteapi.db', sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
         console.error(err.message);
