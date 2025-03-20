@@ -1,0 +1,25 @@
+CREATE TABLE expenses (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  category TEXT CHECK(category IN ('groceries', 'beauty', 'transport', 'taxi', 'travelling', 'rent', 'phone', 'cafe', 'coffee', 'health', 'sport', 'clothes', 'home', 'electronics', 'other')),
+  amount REAL,
+  date TEXT,
+  comment TEXT
+);
+
+CREATE TABLE shifts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  date TEXT,
+  hours REAL,
+  rate REAL,
+  total REAL GENERATED ALWAYS AS (hours * rate) STORED
+);
+
+INSERT INTO expenses (category, amount, date, comment) 
+VALUES ('groceries', 50.75, '2025-03-20', 'Bought groceries at the store');
+INSERT INTO expenses (category, amount, date, comment) 
+VALUES ('taxi', 25.00, '2025-03-21', 'Taxi fare to airport');
+
+INSERT INTO shifts (date, hours, rate) 
+VALUES ('2025-03-20', 8, 20);
+INSERT INTO shifts (date, hours, rate) 
+VALUES ('2025-03-21', 7.5, 22);
